@@ -2012,7 +2012,7 @@ c++通过提供特殊的对象指针，this指针，解决上述问题。**this�
 
 
 
-this指针是隐含每一个非静态成员函数内的一种指针
+this指针是隐含在每一个非静态成员函数内的一种指针；
 
 this指针不需要定义，直接使用即可
 
@@ -2034,10 +2034,10 @@ public:
 		this->age = age;
 	}
 
-	Person& PersonAddPerson(Person p)
+	Person& PersonAddPerson(Person p)//注意此刻返回值是地址；
 	{
 		this->age += p.age;
-		//返回对象本身
+		//this是指向对象的指针，返回对象本身
 		return *this;
 	}
 
@@ -2050,6 +2050,7 @@ void test01()
 	cout << "p1.age = " << p1.age << endl;
 
 	Person p2(10);
+	//p2.PersonAddPerson(p1)执行后，再返回P2；多执行几次相加的运算；
 	p2.PersonAddPerson(p1).PersonAddPerson(p1).PersonAddPerson(p1);
 	cout << "p2.age = " << p2.age << endl;
 }
